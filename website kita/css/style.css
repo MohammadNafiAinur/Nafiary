@@ -1,0 +1,1076 @@
+/* ============================================
+   Love Story Website - Mas & Ade
+   Nuansa: soft pink, cream, putih, pastel
+   ============================================ */
+
+:root {
+  --pink-soft: #f8d7e8;
+  --pink-pastel: #f5c6d9;
+  --pink-deep: #e8a4bc;
+  --cream: #fef9f5;
+  --cream-warm: #fdf0e6;
+  --white: #ffffff;
+  --pastel-mint: #e8f5e9;
+  --pastel-lavender: #ede7f6;
+  --text-soft: #5c4a4a;
+  --text-dark: #3d3232;
+  --shadow-soft: rgba(232, 164, 188, 0.25);
+  --font-display: 'Pacifico', cursive;
+  --font-script: 'Dancing Script', cursive;
+  --font-body: 'Poppins', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text-soft);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+body.landing-open {
+  overflow: hidden;
+}
+
+/* ========== LANDING PAGE ========== */
+.landing {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* original soft gradient background */
+  background: linear-gradient(135deg, var(--cream-warm) 0%, var(--pink-soft) 50%, var(--pastel-lavender) 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.landing.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.landing-content {
+  text-align: center;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.landing-greeting {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  transform: scale(0.8);
+  opacity: 0;
+  animation: landingPop 0.8s ease forwards;
+}
+
+.landing-sub {
+  font-family: var(--font-script);
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  color: var(--pink-deep);
+  margin-bottom: 2rem;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: landingFadeUp 0.8s ease 0.3s forwards;
+}
+
+.btn-enter {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, var(--pink-deep), var(--pink-pastel));
+  color: var(--white);
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--shadow-soft);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: landingFadeUp 0.8s ease 0.5s forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-enter:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 28px var(--shadow-soft);
+}
+
+@keyframes landingPop {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes landingFadeUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Floating hearts di landing */
+.landing-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ========== MAIN CONTENT (tersembunyi sampai tombol diklik) ========== */
+.main-content {
+  display: none;
+  min-height: 100vh;
+  padding-top: 4.5rem;
+}
+
+.main-content.visible {
+  display: block;
+  animation: mainFadeIn 0.8s ease;
+}
+
+@keyframes mainFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Nav musik */
+.top-nav {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+}
+
+body.lightbox-open .top-nav {
+  display: none;
+}
+
+body.lightbox-open .page-nav {
+  display: none;
+}
+
+/* Nav antar "halaman" */
+.page-nav {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 60;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+/* Ensure main content stacks above floating hearts */
+.sosial-card,
+.galeri-carousel,
+.galeri-grid,
+.pesan-card,
+.surat-box {
+  position: relative;
+  z-index: 3;
+}
+
+.page-link {
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-soft);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px var(--shadow-soft);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.page-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px var(--shadow-soft);
+}
+
+.page-link.active {
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pastel-lavender));
+  color: var(--text-dark);
+  box-shadow: 0 4px 16px rgba(232, 164, 188, 0.5);
+}
+
+.btn-music {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 2rem;
+  background: var(--white);
+  color: var(--text-soft);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 2px 12px var(--shadow-soft);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-music:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px var(--shadow-soft);
+}
+
+.btn-music.playing {
+  background: var(--pink-soft);
+  color: var(--text-dark);
+}
+
+.icon-music { font-size: 1.2rem; }
+
+/* Modal pilihan lagu: tampil di tengah saat klik Musik, hilang setelah pilih lagu */
+.music-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.music-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.music-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.music-modal-box {
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem 1.75rem;
+  max-width: 320px;
+  width: 100%;
+}
+
+.music-modal-box .music-panel-title {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.music-modal-box .music-track-list {
+  margin-bottom: 0.75rem;
+}
+
+.music-modal-box .music-panel-note {
+  margin-bottom: 0;
+}
+
+.music-panel-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.music-track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.music-track {
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 215, 232, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-soft);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 2px 10px rgba(232, 164, 188, 0.15);
+}
+
+.music-track:hover {
+  background: var(--pink-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(232, 164, 188, 0.3);
+}
+
+.music-track.active {
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pastel-lavender));
+  border-color: transparent;
+  color: var(--text-dark);
+  box-shadow: 0 4px 18px rgba(232, 164, 188, 0.4);
+}
+
+.music-track-icon {
+  margin-right: 0.35rem;
+  font-size: 0.9em;
+}
+
+.music-panel-now {
+  font-size: 0.8rem;
+  color: var(--pink-deep);
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  min-height: 1.25em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.music-panel-now.visible {
+  opacity: 1;
+}
+
+.music-panel-note {
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  opacity: 0.8;
+}
+
+.music-confirm-btn {
+  display: block;
+  width: 100%;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--pink-deep), var(--pink-pastel));
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 18px var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.music-confirm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(232, 164, 188, 0.5);
+}
+
+.music-confirm-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* ========== SECTION UMUM ========== */
+.section {
+  padding: 4rem 1.5rem;
+  position: relative;
+}
+
+.page-section {
+  min-height: 100vh;
+  display: none;
+}
+
+.page-section.active-page {
+  display: block;
+}
+
+/* default gradient replacement now occurs per-section below */
+.section:nth-child(even) {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 30%, var(--cream) 100%);
+}
+
+/* page-specific backgrounds using provided images with pink gradient overlay */
+#pesan {
+  /* back to standard pink/cream gradient with floating hearts */
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 30%, var(--cream) 100%);
+  isolation: isolate;
+}
+
+#pesan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../assets/background page 1.jpeg") center / cover no-repeat;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#galeri {
+  /* default gradient applies from .section:nth-child(even) */
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 30%, var(--cream) 100%);
+  isolation: isolate;
+}
+
+#galeri::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../assets/background page 2.jpeg") center / cover no-repeat;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#surat {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 30%, var(--cream) 100%);
+  isolation: isolate;
+}
+
+#surat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../assets/background page 3.jpeg") center / cover no-repeat;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* tombol pembaca suara di atas surat pembukaan */
+.pesan-card {
+  position: relative; /* untuk menempatkan tombol di dalam kartu */
+}
+
+.btn-read {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 1.2rem;
+  background: linear-gradient(135deg, var(--pink-pastel), var(--pink-deep));
+  color: var(--white);
+  box-shadow: 0 4px 20px var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 10;
+}
+
+.btn-read:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px var(--shadow-soft);
+}
+
+.btn-read.playing {
+  background: var(--pink-soft);
+}
+
+#video {
+  /* default gradient will cover; no photo background */
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 30%, var(--cream) 100%);
+  isolation: isolate;
+}
+
+#video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../assets/background page 4.jpeg") center / cover no-repeat;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#sosial {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 30%, var(--cream) 100%);
+  isolation: isolate;
+}
+
+#sosial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../assets/background page 5.jpeg") center / cover no-repeat;
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2; /* ensure content stacks above floating hearts */
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Section hearts (floating) */
+.section-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0; /* keep hearts behind content */
+}
+
+/* fallback for other floating heart containers */
+.floating-hearts {
+  z-index: 0;
+}
+
+/* ========== PESAN ROMANTIS ========== */
+.pesan-card {
+  background: var(--white);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.pesan-card p {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  color: var(--text-soft);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pesan-card p:last-child { margin-bottom: 0; }
+
+/* ========== GALERI ========== */
+/* Carousel: satu foto, bisa digeser */
+.galeri-carousel-wrap {
+  max-width: 520px;
+  margin: 0 auto 1.5rem;
+}
+
+.galeri-carousel-hint {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+}
+
+.galeri-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px var(--shadow-soft);
+  border: 3px solid var(--pink-pastel);
+  background: var(--white);
+}
+
+.galeri-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--pink-deep);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 3;
+  box-shadow: 0 2px 12px var(--shadow-soft);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.galeri-arrow:hover {
+  background: var(--pink-soft);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 4px 16px var(--shadow-soft);
+}
+
+.galeri-arrow-left {
+  left: 0.75rem;
+}
+
+.galeri-arrow-right {
+  right: 0.75rem;
+}
+
+.galeri-carousel-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.galeri-carousel-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.galeri-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.galeri-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.galeri-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pink-pastel);
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.galeri-carousel-dot.active {
+  opacity: 1;
+  transform: scale(1.2);
+  background: var(--pink-deep);
+}
+
+/* Grid: semua foto (setelah carousel selesai) */
+.galeri-grid-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.galeri-grid-hint {
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  color: var(--pink-deep);
+  margin-bottom: 1rem;
+}
+
+.galeri-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.galeri-item {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--shadow-soft);
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 2px solid var(--pink-pastel);
+}
+
+.galeri-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 40px var(--shadow-soft);
+  border-color: var(--pink-deep);
+}
+
+.galeri-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.galeri-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--text-dark);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 1001;
+}
+
+.lightbox-close:hover {
+  background: var(--pink-soft);
+  transform: scale(1.1);
+}
+
+/* ========== VIDEO UNTUK ADE ========== */
+.section-video {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 40%, var(--pastel-lavender) 100%) !important;
+}
+
+.video-wrapper {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow:
+    0 12px 48px rgba(232, 164, 188, 0.4),
+    0 0 0 4px var(--pink-pastel),
+    0 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.video-player {
+  width: 100%;
+  display: block;
+  background: #000;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, rgba(248, 215, 232, 0.97) 0%, rgba(237, 231, 246, 0.97) 100%);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 2;
+}
+
+.video-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.video-overlay--exiting {
+  animation: videoOverlayExit 0.6s ease forwards;
+  pointer-events: none;
+}
+
+.video-overlay--exiting .video-overlay-content {
+  animation: videoOverlayContentExit 0.6s ease forwards;
+}
+
+@keyframes videoOverlayExit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes videoOverlayContentExit {
+  to {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+}
+
+.video-player--entering {
+  animation: videoPlayerEnter 0.5s ease 0.15s both;
+}
+
+@keyframes videoPlayerEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.video-overlay-content {
+  text-align: center;
+  padding: 2.5rem;
+  max-width: 360px;
+}
+
+.video-overlay-heart {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: videoHeartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes videoHeartPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.9; }
+}
+
+.video-overlay-text {
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.video-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, var(--pink-deep), var(--pink-pastel));
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 6px 24px var(--shadow-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-play-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(232, 164, 188, 0.5);
+}
+
+.video-play-icon {
+  font-size: 1.2rem;
+}
+
+/* ========== SURAT CINTA ========== */
+.surat-box {
+  background: var(--white);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.surat-content p {
+  margin-bottom: 1.25rem;
+  color: var(--text-soft);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.surat-content p:last-of-type { margin-bottom: 0; }
+
+.surat-tanda {
+  font-family: var(--font-script);
+  font-size: 1.4rem;
+  color: var(--pink-deep);
+  margin-top: 1.5rem;
+}
+
+/* ========== SOSIAL MEDIA ========== */
+.sosial-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Quote area — cleaner, larger, decorative */
+.sosial-quote {
+  max-width: 860px;
+  margin: 1.75rem auto 0;
+  padding: 0.25rem 1rem 0.75rem;
+  background: transparent; /* no box */
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  font-family: var(--font-display);
+  color: rgba(61,50,50,0.95);
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  position: relative;
+  z-index: 3; /* ensure quote stays above floating hearts */
+  display: block;
+  -webkit-font-smoothing: antialiased;
+  animation: landingFadeUp 0.7s ease both;
+}
+
+.sosial-quote blockquote {
+  margin: 0;
+  padding: 0 0.5rem;
+}
+
+/* decorative hearts/flourish */
+.sosial-quote::before {
+  content: '';
+  position: absolute;
+  top: -0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 18px;
+  background-image: linear-gradient(90deg, rgba(232,164,188,0.25), rgba(245,198,217,0.15));
+  border-radius: 12px;
+  filter: blur(0.6px);
+}
+
+.sosial-quote p {
+  margin: 0.25rem 0;
+  font-weight: 500;
+}
+
+/* subtle underline flourish */
+.sosial-quote::after {
+  content: '❥';
+  display: block;
+  color: var(--pink-deep);
+  font-size: 1.1rem;
+  margin-top: 0.6rem;
+  opacity: 0.95;
+}
+
+.sosial-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  background: var(--white);
+  border-radius: 1.25rem;
+  text-decoration: none;
+  color: var(--text-soft);
+  box-shadow: 0 4px 20px var(--shadow-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sosial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px var(--shadow-soft);
+  color: var(--pink-deep);
+}
+
+.sosial-avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--pink-pastel);
+  box-shadow: 0 4px 18px var(--shadow-soft);
+}
+
+.sosial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sosial-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.sosial-handle {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+/* ========== FLOATING HEARTS (elemen dibuat di JS) ========== */
+.heart-float {
+  position: absolute;
+  font-size: 1.25rem;
+  opacity: 0.5;
+  animation: floatHeart 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes floatHeart {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translate(10px, -20px) rotate(10deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-5px, -40px) rotate(-5deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(15px, -25px) rotate(5deg);
+    opacity: 0.55;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .section { padding: 3rem 1rem; }
+  .page-nav {
+    top: 0.75rem;
+    right: 0.75rem;
+    left: auto;
+    max-width: 70%;
+    justify-content: flex-end;
+  }
+  .pesan-card, .surat-box { padding: 1.5rem; }
+  .galeri-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .galeri-arrow { width: 2.5rem; height: 2.5rem; font-size: 1.5rem; }
+  .galeri-arrow-left { left: 0.5rem; }
+  .galeri-arrow-right { right: 0.5rem; }
+  .galeri-item { aspect-ratio: 1; }
+  .sosial-links { flex-direction: column; }
+  .video-wrapper { margin: 0 0.5rem; }
+  .video-overlay-content { padding: 1.5rem; }
+  .video-overlay-text { font-size: 1.25rem; }
+}

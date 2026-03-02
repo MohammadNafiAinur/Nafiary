@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Ade ❤️ | Love Story Mas & Ade</title>
+  <!-- Google Fonts: romantis & lucu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ========== LANDING PAGE (Halaman Pembuka) ========== -->
+  <section id="landing" class="landing active">
+    <div class="landing-content">
+      <p class="landing-greeting">Halo ade ❤️</p>
+      <p class="landing-sub">Mas punya sesuatu untuk ade...</p>
+      <button type="button" class="btn-enter" id="btnEnter">Klik di sini ya ade</button>
+    </div>
+    <div class="floating-hearts landing-hearts" aria-hidden="true"></div>
+  </section>
+
+  <!-- ========== HALAMAN UTAMA ========== -->
+  <main id="mainContent" class="main-content">
+    <!-- Nav / tombol musik + navigasi halaman -->
+    <nav class="top-nav">
+      <button type="button" class="btn-music" id="btnMusic" aria-label="Putar / jeda musik">
+        <span class="icon-music" id="iconMusic">🎵</span>
+        <span class="label-music">Musik</span>
+      </button>
+    </nav>
+
+    <nav class="page-nav">
+      <button type="button" class="page-link active" data-page-target="pesan">Pembukaan</button>
+      <button type="button" class="page-link" data-page-target="galeri">Galeri</button>
+      <button type="button" class="page-link" data-page-target="surat">Surat dari Mas</button>
+      <button type="button" class="page-link" data-page-target="video">Video Kita</button>
+      <button type="button" class="page-link" data-page-target="sosial">Sosial Media</button>
+    </nav>
+
+    <!-- Modal pilihan lagu: muncul di tengah saat klik Musik -->
+    <div class="music-modal" id="musicModal" aria-hidden="true">
+      <div class="music-modal-backdrop" id="musicModalBackdrop"></div>
+      <div class="music-modal-box">
+        <p class="music-panel-title">Pilih lagu buat ade:</p>
+        <div class="music-track-list">
+          <button type="button"
+                  class="music-track active"
+                  data-src="assets/Perahu Kertas.mp3"
+                  data-start="0"
+                  data-label="Perahu Kertas"
+                  data-gain="1">
+            <span class="music-track-icon">❤️</span>
+            Perahu Kertas
+          </button>
+          <button type="button"
+                  class="music-track"
+                  data-src="assets/sempurna.mp3"
+                  data-start="0"
+                  data-label="Sempurna"
+                  data-gain="3">
+            <span class="music-track-icon">🎵</span>
+            Sempurna
+          </button>
+        </div>
+        <button type="button" class="music-confirm-btn" id="musicConfirmBtn">
+          Pilih lagu ini 💕
+        </button>
+        <p class="music-panel-note">Pilih dulu lagunya, lalu klik tombol di atas ya sayang ❤️</p>
+      </div>
+    </div>
+
+    <!-- Section: Pesan Romantis -->
+    <section id="pesan" class="section section-pesan page-section">
+      <div class="container">
+        <h2 class="section-title">Dari Mas, untuk Ade</h2>
+        <div class="pesan-card" style="position:relative;">
+          <!-- tombol pembacaan suara di pojok kanan atas surat pembukaan -->
+          <button type="button" id="btnRead" class="btn-read" aria-label="Mas bacain ya sayang">Mas bacain ya sayang</button>
+          <p>Halo sayang</p>
+          <p>Akhirnya ya mas bisa tunjukin pemberian ini ke ade.<br>Sekarang, mas cuman mau ade duduk bentar, dan baca pelan pelan.</p>
+          <p>Karena yang ade lihat di sini itu bukan cuma tulisan.<br>Ini perasaan.</p>
+          <p>Gimana, seneng ga?<br>Mas harap ade seneng ya sama pemberian ini.</p>
+          <p>Oh iya, ade lanjut liat yang lain dulu ya.<br>Nanti ketemu lagi sama mas, papai:)</p>
+        </div>
+      </div>
+      <div class="floating-hearts section-hearts" aria-hidden="true"></div>
+    </section>
+
+    <!-- Section: Galeri Foto -->
+    <section id="galeri" class="section section-galeri page-section">
+      <div class="container">
+        <div class="floating-hearts section-hearts" aria-hidden="true"></div>
+        <h2 class="section-title">Galeri Foto Kita</h2>
+
+        <!-- Mode 1: Carousel (satu foto, klik panah) -->
+        <div class="galeri-carousel-wrap" id="galeriCarouselWrap">
+          <p class="galeri-carousel-hint">Klik panah kiri/kanan untuk lihat foto</p>
+          <div class="galeri-carousel" id="galeriCarousel">
+            <button type="button" class="galeri-arrow galeri-arrow-left" id="galeriArrowLeft" aria-label="Foto sebelumnya">‹</button>
+            <div class="galeri-carousel-track" id="galeriCarouselTrack">
+              <div class="galeri-carousel-slide"><img src="assets/foto 1.png" alt="Foto kita 1"></div>
+              <div class="galeri-carousel-slide"><img src="assets/foto 2.png" alt="Foto kita 2"></div>
+              <div class="galeri-carousel-slide"><img src="assets/foto 3.jpeg" alt="Foto kita 3"></div>
+              <div class="galeri-carousel-slide"><img src="assets/foto 4.jpeg" alt="Foto kita 4"></div>
+              <div class="galeri-carousel-slide"><img src="assets/foto 5.jpeg" alt="Foto kita 5"></div>
+              <div class="galeri-carousel-slide"><img src="assets/foto 6.png" alt="Foto kita 6"></div>
+            </div>
+            <button type="button" class="galeri-arrow galeri-arrow-right" id="galeriArrowRight" aria-label="Foto berikutnya">›</button>
+          </div>
+          <div class="galeri-carousel-dots" id="galeriCarouselDots"></div>
+        </div>
+
+        <!-- Mode 2: Grid semua foto (muncul setelah klik panah kanan di foto terakhir) -->
+        <div class="galeri-grid-wrap" id="galeriGridWrap" style="display:none;">
+          <p class="galeri-grid-hint">Semua foto kita</p>
+          <div class="galeri-grid" id="galeriGrid">
+            <div class="galeri-item"><img src="assets/foto 1.png" alt="Foto kita 1"></div>
+            <div class="galeri-item"><img src="assets/foto 2.png" alt="Foto kita 2"></div>
+            <div class="galeri-item"><img src="assets/foto 3.jpeg" alt="Foto kita 3"></div>
+            <div class="galeri-item"><img src="assets/foto 4.jpeg" alt="Foto kita 4"></div>
+            <div class="galeri-item"><img src="assets/foto 5.jpeg" alt="Foto kita 5"></div>
+            <div class="galeri-item"><img src="assets/foto 6.png" alt="Foto kita 6"></div>
+          </div>
+        </div>
+
+        <!-- Lightbox untuk preview foto -->
+        <div class="lightbox" id="lightbox" aria-hidden="true">
+          <button type="button" class="lightbox-close" id="lightboxClose">&times;</button>
+          <img src="" alt="Preview" id="lightboxImg">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Love Letter -->
+    <section id="surat" class="section section-surat page-section">
+      <div class="container">
+        <h2 class="section-title">Surat dari Mas</h2>
+        <div class="surat-box" style="position:relative;">
+          <!-- tombol pembacaan suara di pojok kanan atas surat dari mas -->
+          <button type="button" id="btnReadSurat" class="btn-read" aria-label="Mas bacain lagi ya">Mas bacain lagi ya</button>
+          <div class="surat-content" id="suratContent">
+            <p>Sayang..</p>
+            <p>Kadang mas tuh suka mikir tau ga…<br>Kobisa ya mas seberuntung ini punya ade?</p>
+            <p>Ade tau ga?<br>Di hidup mas yang kadang berantakan, kadang cape, kadang ngerasa ga cukup…<br>Ade dateng jadi alasan kenapa mas tetep mau berusaha.</p>
+            <p>Mas tau kita ga selalu baik baik aja.<br>Kita pernah jatuh, pernah saling nyakitin, pernah bikin satu sama lain kecewa.<br>Tapi, di antara semua itu…<br>Ade tetep milih buat bertahan.<br>Dan itu yang bikin ade beda.</p>
+            <p>Ade itu bukan cuma pasangan buat mas.<br>Ade itu tempat mas pulang.<br>Tempat mas cerita tanpa takut dihakimi.<br>Tempat mas ngerasa diterima apa adanya.</p>
+            <p>Kalo dunia lagi berat, mas cuma butuh ade buat nenangin.<br>Kalo mas lagi salah arah, ade selalu jadi arah yang pasti buat mas.</p>
+            <p>Sayang, mas mungkin masih belum sempurna.<br>Kadang masih keras kepala, kadang masih bikin kesel,<br>Kadang masih kurang ngertiin ade juga…<br>Tapi satu hal yang ga pernah berubah, yaitu..<br>Perasaan mas ke ade.</p>
+            <p>Mas ga mau hubungan ini cuma jadi cerita sementara.<br>Mas mau hubungan ini jadi perjalanan panjang.<br>Mas mau tumbuh bareng ade.<br>Mas mau belajar bareng ade.<br>Mas mau tua bareng ade.</p>
+            <p>Dan kalo suatu hari nanti hidup ngasih ujian lagi ke kita,<br>Mas harap kita tetep genggam tangan satu sama lain yaa…<br>Jangan sampe lepas.</p>
+            <p>Karena buat mas,<br>Kehilangan ade itu bukan pilihan.</p>
+            <p>Terimakasi ya sayang udah sabar sama mas.<br>Terimakasi udah tetep milih mas.<br>Dan terimakasi udah jadi bagian paling penting di hidup mas.</p>
+            <p>Mas sayang banget sama ade.<br>Bukan cuma hari ini.<br>Bukan cuma sekarang.<br>Tapi setiap hari dan seterusnya.</p>
+            <p class="surat-tanda">— Mas</p>
+          </div>
+        </div>
+      </div>
+      <div class="floating-hearts section-hearts" aria-hidden="true"></div>
+    </section>
+
+    <!-- Section: Video Romantis -->
+    <section id="video" class="section section-video page-section">
+      <div class="container">
+        <h2 class="section-title">Video untuk Ade</h2>
+        <div class="video-wrapper">
+          <div class="video-overlay" id="videoOverlay">
+            <div class="video-overlay-content">
+              <span class="video-overlay-heart">❤️</span>
+              <p class="video-overlay-text video-overlay-text-initial">Video ini mas buat untuk ade.<br>Semoga ade suka ya sayang&lt;3</p>
+              <p class="video-overlay-text video-overlay-text-replay" style="display:none;">Mau nonton lagi? putar ulang aja sayang hehe</p>
+              <button type="button" class="video-play-btn" id="videoPlayBtn" aria-label="Putar video">
+                <span class="video-play-icon">▶</span>
+                <span>Putar Video</span>
+              </button>
+            </div>
+          </div>
+          <video id="videoKita" class="video-player" controls preload="metadata">
+            <source src="assets/IMG_4452.mp4" type="video/mp4">
+            Browser ade tidak mendukung pemutaran video.
+          </video>
+        </div>
+      </div>
+      <div class="floating-hearts section-hearts" aria-hidden="true"></div>
+    </section>
+
+    <!-- Section: Sosial Media -->
+    <section id="sosial" class="section section-sosial page-section">
+      <div class="container">
+        <h2 class="section-title">Kita di Sosial Media</h2>
+        <div class="sosial-links">
+          <a href="https://instagram.com/nafiary_" target="_blank" rel="noopener noreferrer" class="sosial-card">
+            <div class="sosial-avatar">
+              <img src="assets/Foto%20nafiary.jpeg" alt="Foto Mas di Instagram">
+            </div>
+            <span class="sosial-name">Instagram Mas</span>
+            <span class="sosial-handle">@nafiary_</span>
+          </a>
+          <a href="https://instagram.com/khesyaputriii" target="_blank" rel="noopener noreferrer" class="sosial-card">
+            <div class="sosial-avatar">
+              <img src="assets/Foto%20khesyaputrii.jpeg" alt="Foto Ade di Instagram">
+            </div>
+            <span class="sosial-name">Instagram Ade</span>
+            <span class="sosial-handle">@khesyaputriii</span>
+          </a>
+        </div>
+
+        <!-- Quote romantis di bawah link sosial -->
+        <div class="sosial-quote" aria-hidden="false">
+          <blockquote>
+            <p>&ldquo;Selama waktu masih berpihak<br>kita akan memilih untuk tetap bersama&rdquo;</p>
+          </blockquote>
+        </div>
+        <div class="floating-hearts section-hearts" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Dibuat dengan ❤️ oleh Mas untuk Ade</p>
+    </footer>
+  </main>
+
+  <!-- Background music (opsional): mas sudah menyiapkan 3 lagu di panel musik -->
+  <audio id="bgMusic" loop></audio>
+  <!-- audio pembukaan khusus untuk surat pembukaan -->
+  <audio id="audioPembukaan" src="assets/pembukaan%20baru.mp3"></audio>
+  <!-- audio pembukaan khusus untuk surat dari mas -->
+  <audio id="audioSurat" src="assets/surat%20dari%20mas%20baru.mp3"></audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
